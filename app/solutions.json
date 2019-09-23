@@ -1,0 +1,65 @@
+[{
+    "id": 1,
+    "title": "Client Sync",
+    "description": "Synchronous computing on the client-side.",
+    "path": "/demo/client-sync",
+    "compute": "/computes/client-sync.js",
+    "type": "client"
+}, {
+    "id": 2,
+    "title": "Client Batches",
+    "description": "Asynchronous computing with batching on the client-side.",
+    "path": "/demo/client-batches",
+    "compute": "/computes/client-batches.js",
+    "type": "client"
+}, {
+    "id": 3,
+    "title": "Client Worker [w1]",
+    "description": "Using single Web Worker on the client-side for the computing.",
+    "path": "/demo/client-worker",
+    "compute": "/computes/client-worker.js",
+    "type": "client"
+}, {
+    "id": 4,
+    "title": "Client Workers [w5]",
+    "description": "Using 5 Web Workers (batching) on the client-side for the computing.",
+    "path": "/demo/client-workers",
+    "compute": "/computes/client-workers.js",
+    "type": "client",
+    "options": {
+        "workersCount": 5
+    }
+}, {
+    "id": 5,
+    "title": "Client Service [w1.5]",
+    "description": "Using master Web Worker and 5 slave workers (map-reduce) on the client-side.",
+    "path": "/demo/client-service",
+    "compute": "/computes/client-service.js",
+    "type": "client",
+    "options": {
+        "workersCount": 5
+    }
+}, {
+    "id": 6,
+    "title": "Server Sync [q3]",
+    "description": "Sends 3 requests to server for synchronous computing.",
+    "path": "/demo/server-sync",
+    "api": "/api/compute/sync",
+    "compute": "/computes/server-sync.js",
+    "type": "server",
+    "options": {
+        "requestsCount": 3
+    }
+}, {
+    "id": 7,
+    "title": "Server Service [q3 x w1.5]",
+    "description": "Sends 3 requests to server for computing by using master worker thread and 5 slave threads (map-reduce) for each request.",
+    "path": "/demo/server-service",
+    "api": "/api/compute/service",
+    "compute": "/computes/server-service.js",
+    "type": "server",
+    "options": {
+        "requestsCount": 3,
+        "workersCount": 5
+    }
+}]

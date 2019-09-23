@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Monitor for JavaScript Multi-Threading.">
+        <title>Multi-Threading Monitor</title>
+        <script defer src="/web-resources/widgets/stats.js"></script>
+        <link rel="stylesheet" href="/web-resources/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="content">
+                <div style="display: flex; margin-bottom: 15px;">
+                    <div class="widget">
+                        <div class="widget-title">
+                            <p class="widget-title__text">CPU Usage</p>
+                        </div>
+                        <div class="widget-content js-wstats">
+                            <p class="-hint">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="flex: 1; display: flex; height: 100%;">
+                    <div style="flex: 1; display: flex; height: 100%;">
+                        <div class="widget">
+                            <div class="widget-title">
+                                <p class="widget-title__text">Client Logs</p>
+                            </div>
+                            <div class="widget-content -scrolling">
+                                <div class="logs js-wcli"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; display: flex; margin-left: 15px; height: 100%;">
+                        <div class="widget">
+                            <div class="widget-title">
+                                <p class="widget-title__text">Server Logs</p>
+                            </div>
+                            <div class="widget-content -scrolling">
+                                <div class="logs js-wsrv"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.addEventListener('load', function() {
+                const $wlogs = {
+                    client: document.querySelector('.js-wcli'),
+                    server: document.querySelector('.js-wsrv')
+                };
+                const statsWidget = createWidgetStats(document.querySelector('.js-wstats'));
+                
+                function outLog($widget, messages) {
+                    (messages instanceof Array ? messages : [messages]).forEach(msg => {
+                        let $p = document.createElement('P');
+                        let $text = document.createTextNode(msg);
+                        $p.appendChild($text);
+                        $widget.appendChild($p);
+                        $widget.parentElement.scrollTop = $widget.offsetHeight;
+                    });
+                }
+                
+                const socket = new WebSocket('ws://localhost:3001');
+                socket.onopen = e => {
+                    socket.send(JSON.stringify({
+                        type: 'hello',
+                        purpose: 'consume'
+                    }));
+                };
+                socket.onmessage = e => {
+                    let data = JSON.parse(e.data);
+                    switch (data.type) {
+                        case 'stats':
+                            statsWidget.update(data.stats);
+                            break;
+                        case 'logs':
+                            outLog($wlogs[data.context], data.strings);
+                            break;
+                    }  
+                };
+            });
+        </script>
+    </body>
+</html>

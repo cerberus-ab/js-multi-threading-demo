@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Demo for JavaScript Multi-threading.">
+        <title>Multi-Threading Demo</title>
+        <script defer src="/web-resources/common.js"></script>
+        <link rel="stylesheet" href="/web-resources/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <p class="-title">Wellcome,</p>
+                <br/>
+                <p style="max-width: 600px;">There is a set of experiments with HTML5 Web Workers and new coming Node.js worker_threads. Just select one and be awesome with that stuff.</p>
+            </div>
+            <div class="content">
+                <ul class="list" style="max-width: 600px;">
+                    <% solutions.forEach(function(solution) { %>
+                    <li class="list__el" data-href="<%= solution.path %>">
+                        <p>#<%= solution.id %>&nbsp;&nbsp;<%= solution.title %></p>
+                        <p class="-hint"><%= solution.description %></p>
+                    </li>
+                    <% }); %>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

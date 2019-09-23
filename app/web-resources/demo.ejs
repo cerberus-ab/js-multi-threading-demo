@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Demo for JavaScript Multi-Threading.">
+        <title>Multi-Threading Demo</title>
+        <script>
+            const settings = JSON.parse(`<%- JSON.stringify(settings) %>`);
+            const solution = JSON.parse(`<%- JSON.stringify(solution) %>`);
+        </script>
+        <script src="/common/log.js"></script>
+        <script>const log = createLog(settings.LOGS_CHANNEL_URL, 'client');</script>
+        <script defer src="/web-resources/common.js"></script>
+        <script defer src="/common/utils.js"></script>
+        <script defer src="/common/task.js"></script>
+        <% if (solution.type === 'client') { %>
+        <script defer src="/web-resources/<%= solution.compute %>"></script>
+        <script defer src="/web-resources/widgets/clock.js"></script>
+        <% } else if (solution.type === 'server')  { %>
+        <script defer src="/web-resources/computes/server-request.js"></script>
+        <script defer src="/web-resources/widgets/requests.js"></script>
+        <% } %>
+        <link rel="stylesheet" href="/web-resources/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <p class="-title"><%= solution.title %></p>
+                <br/>
+                <p class="-hint" style="max-width: 600px;"><%= solution.description %></p>
+            </div>
+            <div class="controls">
+                <button type="button" data-href="/home">Home</button>
+                <button type="button" data-action="start">Start</button>
+                <button type="button" data-href="">Reset</button>
+            </div>
+            <div class="content">
+                <% if (solution.type === 'client') { %>
+                <!-- Wiget for client solutions' visualization -->
+                <div class="widget">
+                    <div class="widget-content -noborder js-wclock">
+                        <p class="-hint">Loading...</p>
+                    </div>
+                </div>
+                <% } else if (solution.type === 'server') { %>
+                <!-- Wiget for server solutions' visualization -->
+                <div class="widget" style="flex: initial;">
+                    <div class="widget-title">
+                        <p class="widget-title__text">Network Interaction Timeline</p>
+                    </div>
+                    <div class="widget-content js-wrequests">
+                        <p class="-hint">Loading...</p>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <script>
+            window.addEventListener('load', function() {
+                
+                <% if (solution.type === 'client') { %>
+                // Client starts visualization
+                let timerDescriptor = null;
+                const clockWidget = createWidgetClock(document.querySelector('.js-wclock'), { title: 'Ticker' });
+                clockWidget.render();
+                
+                function start() {
+                    clockWidget.init();
+                    // tick-tick timer
+                    if (timerDescriptor) {
+                        clearInterval(timerDescriptor);
+                    }
+                    timerDescriptor = setInterval(clockWidget.inc, settings.TIMER_TICK);
+                    // waiting before computing
+                    setTimeout(() => {
+                        let list = utils.range(settings.DATA_SEED);
+                        let beg = +new Date;
+                        log.send('Started compute');
+                        compute({ list }, solution.options || {}, log).then(data => {
+                            log.send(`Done compute ${data.result} (${+new Date - beg} ms)`);
+                        });
+                    }, settings.WAIT_BEFORE_COMPUTE);
+                }
+                
+                <% } else if (solution.type === 'server') { %>
+                // Server starts visualization
+                const requestsCount = solution.options && solution.options.requestsCount || settings.DEFAULT_REQUESTS_COUNT;
+                const requestsWidget = createWidgetRequests(document.querySelector('.js-wrequests'), { requestsCount });
+                requestsWidget.render();
+                
+                // start function for server solutions
+                function start() {
+                    requestsWidget.init();
+                    let requestsIndices = requestsWidget.indices().reverse();
+                    // sending each request with delay
+                    (function next() {
+                        if (requestsIndices.length) {
+                            let index = requestsIndices.pop();
+                            log.send(`Requested compute ${index}`);
+                            requestsWidget.timeSend(index);
+                            requestCompute(`<%= solution.api %>`, { index }).then(data => {
+                                log.send(`Responsed compute ${index} with ${data.result}`);
+                                requestsWidget.timeRecv(index);
+                            });
+                            setTimeout(next, settings.REQUESTS_DELAY);
+                        }
+                    })();
+                }
+                <% } %>
+                
+                // call the generic start function
+                document.querySelector('[data-action="start"]').addEventListener('click', e => {
+                    start();
+                });
+            });
+        </script>
+    </body>
+</html>
