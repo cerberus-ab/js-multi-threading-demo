@@ -22,10 +22,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cerberus-ab/js-multi-threading-demo.git.git"
+    "url": "git+https://github.com/cerberus-ab/js-multi-threading-demo.git"
   },
   "bugs": {
-    "url": "https://github.com/cerberus-ab/js-multi-threading-demo.git/issues"
+    "url": "https://github.com/cerberus-ab/js-multi-threading-demo/issues"
   },
-  "homepage": "https://github.com/cerberus-ab/js-multi-threading-demo.git#readme"
+  "homepage": "https://github.com/cerberus-ab/js-multi-threading-demo#readme"
 }
