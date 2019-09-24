@@ -19,7 +19,7 @@ It contains of two applications:
 - [app](/app) - the main application suggests you to try different solutions of parallel computing in JavaScript;
 - [monitor](/monitor) - displays CPU usages and logs from main app's client and server.
 
-How does it work? Better to look at the diagram:
+How does it work? Better to get a look at the diagram:
 ![block-diagram](/resources/block-diagram.png)
 
 To start both servers use:
