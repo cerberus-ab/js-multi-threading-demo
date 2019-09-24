@@ -1,5 +1,5 @@
 # JavaScript Multi-Threading Demo
-Demonstrates using of HTML5 Web Workers and Node.js worker_threads.
+Demonstrates the using of HTML5 Web Workers, Node.js worker_threads module and parallel computing in JavaScript at all.
 
 ### Before start
 It uses the [worker_threads](https://nodejs.org/api/worker_threads.html) module, so you should have [node.js](https://nodejs.org) v10.5.0 or latest. 
@@ -17,7 +17,7 @@ npm run build
 ### Instruction
 It contains of two applications:
 - [app](/app) - the main application suggests you to try different solutions of parallel computing in JavaScript;
-- [monitor](/monitor) - displays CPU usages and logs from main app's client and server.
+- [monitor](/monitor) - displays CPU usage and logs from the main app's client and server.
 
 How does it work? Better to get a look at the diagram:
 ![block-diagram](/resources/block-diagram.png)
