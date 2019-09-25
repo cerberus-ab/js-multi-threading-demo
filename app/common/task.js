@@ -1,7 +1,7 @@
 let task = {
     
     calc: value => {
-        let count = 1_000_000;
+        let count = 1000000;
         let sum = 0;
         for (let i = 0; i !== count; i += 1) {
             sum += Math.floor(Math.random() * value) + 1;

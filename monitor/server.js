@@ -50,7 +50,7 @@ channel.on('connection', socket => {
 });
 
 // send stats by time
-const TIME_SAMPLE_MS = 1_000;
+const TIME_SAMPLE_MS = 1000;
 (function sendStats() {
     usage(TIME_SAMPLE_MS).then(stats => {
         let msg = JSON.stringify({

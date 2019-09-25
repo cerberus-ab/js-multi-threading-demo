@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cp common/web-resources/main.css app/web-resources/ && cp common/web-resources/main.css monitor/web-resources/",
-    "start": "mkdir -p logs && node --experimental-worker monitor/server.js > logs/monitor-output.log & node --experimental-worker app/server.js > logs/app-output.log &",
+    "start": "mkdir -p logs && (node --experimental-worker monitor/server.js > logs/monitor-output.log & node --experimental-worker app/server.js > logs/app-output.log &)",
     "stop": "ps -efw | grep ' app/server\\| monitor/server' | grep -v grep | awk '{print $2}' | xargs kill"
   },
   "author": "Antony Belov <cerberus.ab@mail.ru>",

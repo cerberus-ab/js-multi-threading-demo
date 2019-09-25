@@ -9,7 +9,7 @@ const countp = (begCpu, endCpu) => {
 };
 
 // returns api
-module.exports = function usage(sample = 1_000) {
+module.exports = function usage(sample = 1000) {
     return new Promise((resolve, reject) => {
         let begCpus = os.cpus();
         

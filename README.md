@@ -27,14 +27,16 @@ To start both servers use:
 npm run start
 ```
 
-It runs the **app** on 3000 and the **monitor** on 3001 in background. To see the servers' logs turn to *logs/app-output.log* and *logs/monitor-output.log* respectively.
+It runs the **app** on 3000 and the **monitor** on 3001 in background.
+
+To see the servers' logs turn to *logs/app-output.log* and *logs/monitor-output.log* respectively.
 
 To stop both servers use:
 ```shell
 npm run stop
 ```
 
-Want to know more before playing? There are some screens:
+Want to know more before playing? Here are some screens:
 - [home page](/resources/screen-home.png) - the list of solutions;
 - [client computing](/resources/screen-compute-client.png) - demo for computing on the client-side;
 - [server computing](/resources/screen-compute-server.png) - demo for computing on the server-side;
