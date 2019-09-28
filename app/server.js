@@ -36,14 +36,15 @@ app.get(/^(.+?\.(?:js|css))$/, (req, res) => {
 // generate api for server's solutions
 solutions.filter(s => s.type === 'server').forEach(solution => {
     const compute = require('./node/' + solution.compute);
+    const options = Object.assign({}, settings.defaultOptions, solution.options || {});
     
     app.post(solution.api, (req, res) => {
         let reqIndex = req.body.index;
-        let list = utils.range(settings.DATA_SEED);
+        let list = utils.range(options.DATA_SEED);
         let beg = +new Date;
         
         log.send(`Start compute ${reqIndex}`);
-        compute({ list, reqIndex }, solution.options || {}, log).then(data => {
+        compute({ list, reqIndex }, options, log).then(data => {
             log.send(`Done compute ${reqIndex} with ${data.result} (${+new Date - beg} ms)`);
             res.setHeader('Content-Type', 'application/json');
             res.end(JSON.stringify({ result: data.result }));

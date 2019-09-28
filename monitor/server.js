@@ -51,7 +51,7 @@ channel.on('connection', socket => {
 
 // send stats by time
 const TIME_SAMPLE_MS = 1000;
-(function sendStats() {
+!function sendStats() {
     usage(TIME_SAMPLE_MS).then(stats => {
         let msg = JSON.stringify({
             type: 'stats',
@@ -60,7 +60,7 @@ const TIME_SAMPLE_MS = 1000;
         concumers.forEach(socket => socket.send(msg));
         sendStats();
     });
-})();
+}();
 
 server.listen(port, () => {
     console.log('Monitor on ' + port);

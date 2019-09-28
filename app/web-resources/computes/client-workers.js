@@ -1,7 +1,6 @@
 function compute(data, options, log) {
     return new Promise((resolve, reject) => {
-        let workersCount = options.workersCount || settings.DEFAULT_WORKERS_COUNT;
-        let batches = utils.batch(data.list, Math.floor(data.list.length / workersCount));
+        let batches = utils.batch(data.list, Math.floor(data.list.length / options.WORKERS_COUNT));
         let accum = [];
         let responsed = 0;
         

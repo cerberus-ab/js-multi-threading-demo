@@ -1,6 +1,6 @@
 function compute(data, options, log) {
     return new Promise((resolve, reject) => {
-        let batches = utils.batch(data.list, settings.DATA_BATCH_SIZE);
+        let batches = utils.batch(data.list, options.DATA_BATCH_SIZE);
         let accum = [];
         !function next() {
             if (batches.length) {

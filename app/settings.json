@@ -1,12 +1,12 @@
 {
-    "DATA_SEED": 500,
-    "DATA_BATCH_SIZE": 100,
-    "WAIT_BEFORE_COMPUTE": 3000,
-    "TIMER_TICK": 200,
-    "REQUESTS_DELAY": 1000,
-    
-    "DEFAULT_WORKERS_COUNT": 5,
-    "DEFAULT_REQUESTS_COUNT": 3,
-    
+    "defaultOptions": {
+        "DATA_SEED": 500,
+        "DATA_BATCH_SIZE": 100,
+        "WAIT_BEFORE_COMPUTE": 3000,
+        "TIMER_TICK": 200,
+        "WORKERS_COUNT": 5,
+        "REQUESTS_COUNT": 3,
+        "REQUESTS_DELAY": 1000
+    },
     "LOGS_CHANNEL_URL": "ws://localhost:3001"
 }

@@ -27,7 +27,7 @@
     "compute": "/computes/client-workers.js",
     "type": "client",
     "options": {
-        "workersCount": 5
+        "WORKERS_COUNT": 5
     }
 }, {
     "id": 5,
@@ -37,7 +37,7 @@
     "compute": "/computes/client-service.js",
     "type": "client",
     "options": {
-        "workersCount": 5
+        "WORKERS_COUNT": 5
     }
 }, {
     "id": 6,
@@ -48,7 +48,7 @@
     "compute": "/computes/server-sync.js",
     "type": "server",
     "options": {
-        "requestsCount": 3
+        "REQUESTS_COUNT": 3
     }
 }, {
     "id": 7,
@@ -59,7 +59,7 @@
     "compute": "/computes/server-service.js",
     "type": "server",
     "options": {
-        "requestsCount": 3,
-        "workersCount": 5
+        "REQUESTS_COUNT": 3,
+        "WORKERS_COUNT": 5
     }
 }]

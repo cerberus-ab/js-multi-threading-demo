@@ -57,7 +57,8 @@
         </div>
         <script>
             window.addEventListener('load', function() {
-                
+                const options = Object.assign({}, settings.defaultOptions, solution.options || {});
+
                 <% if (solution.type === 'client') { %>
                 // Client starts visualization
                 let timerDescriptor = null;
@@ -70,22 +71,23 @@
                     if (timerDescriptor) {
                         clearInterval(timerDescriptor);
                     }
-                    timerDescriptor = setInterval(clockWidget.inc, settings.TIMER_TICK);
+                    timerDescriptor = setInterval(clockWidget.inc, options.TIMER_TICK);
                     // waiting before computing
                     setTimeout(() => {
-                        let list = utils.range(settings.DATA_SEED);
+                        let list = utils.range(options.DATA_SEED);
                         let beg = +new Date;
                         log.send('Started compute');
-                        compute({ list }, solution.options || {}, log).then(data => {
+                        compute({ list }, options, log).then(data => {
                             log.send(`Done compute ${data.result} (${+new Date - beg} ms)`);
                         });
-                    }, settings.WAIT_BEFORE_COMPUTE);
+                    }, options.WAIT_BEFORE_COMPUTE);
                 }
                 
                 <% } else if (solution.type === 'server') { %>
                 // Server starts visualization
-                const requestsCount = solution.options && solution.options.requestsCount || settings.DEFAULT_REQUESTS_COUNT;
-                const requestsWidget = createWidgetRequests(document.querySelector('.js-wrequests'), { requestsCount });
+                const requestsWidget = createWidgetRequests(document.querySelector('.js-wrequests'), {
+                    requestsCount: options.REQUESTS_COUNT
+                });
                 requestsWidget.render();
                 
                 // start function for server solutions
@@ -93,7 +95,7 @@
                     requestsWidget.init();
                     let requestsIndices = requestsWidget.indices().reverse();
                     // sending each request with delay
-                    (function next() {
+                    !function next() {
                         if (requestsIndices.length) {
                             let index = requestsIndices.pop();
                             log.send(`Requested compute ${index}`);
@@ -102,9 +104,9 @@
                                 log.send(`Responsed compute ${index} with ${data.result}`);
                                 requestsWidget.timeRecv(index);
                             });
-                            setTimeout(next, settings.REQUESTS_DELAY);
+                            setTimeout(next, options.REQUESTS_DELAY);
                         }
-                    })();
+                    }();
                 }
                 <% } %>
                 
