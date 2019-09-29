@@ -5,7 +5,10 @@
   "keywords": [
     "multi-threading",
     "web-workers",
-    "worker-threads"
+    "worker-threads",
+    "parallel-computing",
+    "single-threaded",
+    "map-reduce"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
