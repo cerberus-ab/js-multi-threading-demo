@@ -21,23 +21,23 @@
     "type": "client"
 }, {
     "id": 4,
-    "title": "Client Workers [w5]",
-    "description": "Using 5 Web Workers (batching) on the client-side for the computing.",
+    "title": "Client Workers [w4]",
+    "description": "Using 4 Web Workers (batching) on the client-side for the computing.",
     "path": "/demo/client-workers",
     "compute": "/computes/client-workers.js",
     "type": "client",
     "options": {
-        "WORKERS_COUNT": 5
+        "WORKERS_COUNT": 4
     }
 }, {
     "id": 5,
-    "title": "Client Service [w1.5]",
-    "description": "Using master Web Worker and 5 slave workers (map-reduce) on the client-side.",
+    "title": "Client Service [w1.4]",
+    "description": "Using master Web Worker and 4 slave workers (map-reduce) on the client-side.",
     "path": "/demo/client-service",
     "compute": "/computes/client-service.js",
     "type": "client",
     "options": {
-        "WORKERS_COUNT": 5
+        "WORKERS_COUNT": 4
     }
 }, {
     "id": 6,
@@ -52,14 +52,14 @@
     }
 }, {
     "id": 7,
-    "title": "Server Service [q3 x w1.5]",
-    "description": "Sends 3 requests to server for computing by using master worker thread and 5 slave threads (map-reduce) for each request.",
+    "title": "Server Service [q3 x w1.4]",
+    "description": "Sends 3 requests to server for computing by using master worker thread and 4 slave threads (map-reduce) for each request.",
     "path": "/demo/server-service",
     "api": "/api/compute/service",
     "compute": "/computes/server-service.js",
     "type": "server",
     "options": {
         "REQUESTS_COUNT": 3,
-        "WORKERS_COUNT": 5
+        "WORKERS_COUNT": 4
     }
 }]

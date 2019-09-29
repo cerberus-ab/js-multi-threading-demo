@@ -2,7 +2,7 @@
 Demonstrates the using of HTML5 [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers), new coming Node.js [worker_threads](https://nodejs.org/api/worker_threads.html) module and the parallel computing in single-threaded JavaScript at all. Presents a set of demo-solutions and should be considered solely as a testing stuff.
 
 ### Before start
-It uses the worker_threads module, so you should have [Node.js](https://nodejs.org) v10.5.0 or latest. 
+It uses the worker_threads module, so you should have [Node.js](https://nodejs.org) v10.5.0 or higher. 
 
 After cloning the repository install dependencies using npm:
 ```shell
@@ -47,13 +47,13 @@ Better to get a look at the diagram:
 ### Settings
 The [settings.json](/app/settings.json) file contains a list of default options for all solutions. It may be extended for each solution by *options* in the [solutions.json](/app/solutions.json) file. The list of options:
 
-- `{number}` DATA_SEED: 500 - Determines the size of the computed CPU-intensive task.
-- `{number}` DATA_BATCH_SIZE: 100 - The part of the computed task on batching.
-- `{number}` WAIT_BEFORE_COMPUTE: 3000 (ms) - Wait before the computing after start demo (client-side demo).
-- `{number}` TIMER_TICK: 200 (ms) - The time before the next timer's tick (client-side demo).
-- `{number}` WORKERS_COUNT: 5 - The number of workers used. If there's a master-worker involved the actual number will be more by one.
-- `{number}` REQUESTS_COUNT: 3 - The number of requests sent for computing (server-side demo).
-- `{number}` REQUESTS_DELAY: 1000 (ms) - Wait before the next request (server-side demo).
+- `{number}` **DATA_SEED**: 500 - Determines the size of the computed CPU-intensive task.
+- `{number}` **DATA_BATCH_SIZE**: 100 - The part of the computed task on batching.
+- `{number}` **WAIT_BEFORE_COMPUTE**: 3000 (ms) - Wait before the computing after start demo (client-side demo).
+- `{number}` **TIMER_TICK**: 200 (ms) - The time before the next timer's tick (client-side demo).
+- `{number}` **WORKERS_COUNT**: 4 - The number of workers used. If there's a master-worker involved the actual number will be more by one.
+- `{number}` **REQUESTS_COUNT**: 3 - The number of requests sent for computing (server-side demo).
+- `{number}` **REQUESTS_DELAY**: 1000 (ms) - Wait before the next request (server-side demo).
 
 Any changes need the app's restart.
 

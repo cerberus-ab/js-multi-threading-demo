@@ -4,7 +4,7 @@
         "DATA_BATCH_SIZE": 100,
         "WAIT_BEFORE_COMPUTE": 3000,
         "TIMER_TICK": 200,
-        "WORKERS_COUNT": 5,
+        "WORKERS_COUNT": 4,
         "REQUESTS_COUNT": 3,
         "REQUESTS_DELAY": 1000
     },
