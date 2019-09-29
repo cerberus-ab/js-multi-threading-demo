@@ -9,18 +9,19 @@ After cloning the repository install dependencies using npm:
 npm i
 ```
 
-And build using npm script:
+and build using npm script:
 ```shell
 npm run build
 ```
 
 ### Instruction
-It contains of two applications:
+It consists of two applications:
 - [app](/app) - the main application suggests you to try different solutions of the parallel computing in JavaScript;
 - [monitor](/monitor) - displays CPU usage and logs from the main app's client and server.
 
-How does it work? Better to get a look at the diagram:
-![block-diagram](/resources/block-diagram.png)
+Here you can see the UI of both applications (the images may vary):
+
+![ui-screens](/resources/ui-screens.png)
 
 To start both servers use:
 ```shell
@@ -29,22 +30,32 @@ npm run start
 
 It runs the **app** on 3000 ([localhost:3000](http://localhost:3000)) and the **monitor** on 3001 ([localhost:3001](http://localhost:3001)) in background.
 
-To see the servers' logs turn to *logs/app-output.log* and *logs/monitor-output.log* respectively.
-
 To stop both servers use:
 ```shell
 npm run stop
 ```
 
+To see the servers' logs turn to *logs/app-output.log* and *logs/monitor-output.log* respectively.
+
 If you have any problems on start/stop check [that section](#problems).
 
-Want to know more before playing? Here are some screens:
-- [home page](/resources/screen-home.png) - the list of solutions;
-- [client computing](/resources/screen-compute-client.png) - demo for computing on the client-side;
-- [server computing](/resources/screen-compute-server.png) - demo for computing on the server-side;
-- [monitor](/resources/screen-monitor.png) - the monitor's page.
+### How it works
+Better to get a look at the diagram:
 
-The images may vary over time.
+![block-diagram](/resources/block-diagram.png)
+
+### Settings
+The [settings.json](/app/settings.json) file contains a list of default options for all solutions. It may be extended for each solution by *options* in the [solutions.json](/app/solutions.json) file. The list of options:
+
+- `{number}` DATA_SEED: 500 - Determines the size of the computed CPU-intensive task.
+- `{number}` DATA_BATCH_SIZE: 100 - The part of the computed task on batching.
+- `{number}` WAIT_BEFORE_COMPUTE: 3000 (ms) - Wait before the computing after start demo (client-side demo).
+- `{number}` TIMER_TICK: 200 (ms) - The time before the next timer's tick (client-side demo).
+- `{number}` WORKERS_COUNT: 5 - The number of workers used. If there's a master-worker involved the actual number will be more by one.
+- `{number}` REQUESTS_COUNT: 3 - The number of requests sent for computing (server-side demo).
+- `{number}` REQUESTS_DELAY: 1000 (ms) - Wait before the next request (server-side demo).
+
+Any changes need the app's restart.
 
 ### Problems
 At the moment the management npm scripts are available and have been tested only on linux/macos platforms. If you are trying to manage on a windows platform or have any other problem you can start the monitor manually:
