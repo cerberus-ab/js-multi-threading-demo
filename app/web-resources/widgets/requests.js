@@ -3,7 +3,7 @@ function createWidgetRequests($container, options) {
         start: 0,
         count: options.requestsCount,
         requests: utils.range(options.requestsCount).map(index => {
-            return { index, send: 0, recv: 0 };
+            return { index, send: 0, recv: 0, status: undefined };
         }),
         fin: 0
     };
@@ -33,9 +33,11 @@ function createWidgetRequests($container, options) {
                                         <div class="requests-entry-line-times-t" style="width: ${
                                             100 * (req.send / data.fin)
                                         }%;"></div>
-                                        <div class="requests-entry-line-times-t -fill" style="width: ${
+                                        <div class="requests-entry-line-times-t ${req.status !== 'ok' ? '-failure' : '-success'}" style="width: ${
                                             100 * ((req.recv - req.send) / data.fin)
-                                        }%;"><span>${req.recv - req.send} ms</span></div>
+                                        }%;"><span>${
+                                            req.status !== 'ok' ? req.status : ((req.recv - req.send) + ' ms')
+                                        }</span></div>
                                     </div>
                                     `;
                                 }
@@ -48,9 +50,11 @@ function createWidgetRequests($container, options) {
         `;
     };
     
-    const setTime = (index, direction) => {
-        data.requests.find(req => req.index === index)[direction] = (+new Date - data.start);
+    const setTime = (index, direction, status = 'ok') => {
+        let request = data.requests.find(req => req.index === index);
+        request[direction] = (+new Date - data.start);
         if (direction === 'recv') {
+            request.status = status;
             data.fin = Math.max(...data.requests.map(req => req.recv));
         }
         render();
@@ -68,7 +72,7 @@ function createWidgetRequests($container, options) {
             render();
         },
         timeSend: index => setTime(index, 'send'),
-        timeRecv: index => setTime(index, 'recv'),
+        timeRecv: (index, status) => setTime(index, 'recv', status),
         
         indices: () => {
             return data.requests.map(req => req.index);

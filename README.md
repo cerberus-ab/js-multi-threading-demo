@@ -54,6 +54,7 @@ The [settings.json](/app/settings.json) file contains a list of default options 
 - `{number}` **WORKERS_COUNT**: 4 - The number of workers used. If there's a master-worker involved the actual number will be more by one.
 - `{number}` **REQUESTS_COUNT**: 3 - The number of requests sent for computing (server-side demo).
 - `{number}` **REQUESTS_DELAY**: 1000 (ms) - Wait before the next request (server-side demo).
+- `{number}` **REQUEST_TIMEOUT**: 120000 (ms) - The time before reject a request by client (server-side demo).
 
 Any changes need the app's restart.
 

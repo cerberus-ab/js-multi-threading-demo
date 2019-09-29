@@ -100,9 +100,12 @@
                             let index = requestsIndices.pop();
                             log.send(`Requested compute ${index}`);
                             requestsWidget.timeSend(index);
-                            requestCompute(`<%= solution.api %>`, { index }).then(data => {
+                            requestCompute(`<%= solution.api %>`, { index }, options).then(data => {
                                 log.send(`Responsed compute ${index} with ${data.result}`);
-                                requestsWidget.timeRecv(index);
+                                requestsWidget.timeRecv(index, 'ok');
+                            }).catch(err => {
+                                log.send(`Responsed compute ${index} with ${err.message}`);
+                                requestsWidget.timeRecv(index, err.message);
                             });
                             setTimeout(next, options.REQUESTS_DELAY);
                         }

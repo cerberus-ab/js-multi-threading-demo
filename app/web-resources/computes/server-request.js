@@ -1,4 +1,4 @@
-function requestCompute(url, data) {
+function requestCompute(url, data, options) {
     return new Promise((resolve, reject) => {
         fetch(url, {
             method: 'POST',
@@ -6,7 +6,15 @@ function requestCompute(url, data) {
             headers: {
                 'Content-Type': 'application/json'
             }})
-            .then(res => res.json())
-            .then(resolve);
+            .then(res => {
+                if (!res.ok) {
+                    reject(new Error(res.statusText));
+                }
+                return res.json();
+            })
+            .then(resolve)
+
+        // timeout
+        setTimeout(() => reject(new Error('timeout')), options.REQUEST_TIMEOUT);
     });
 }

@@ -41,14 +41,15 @@
     }
 }, {
     "id": 6,
-    "title": "Server Sync [q3]",
-    "description": "Sends 3 requests to server for synchronous computing.",
+    "title": "Server Sync [q5]",
+    "description": "Sends 5 requests to server for synchronous computing.",
     "path": "/demo/server-sync",
     "api": "/api/compute/sync",
     "compute": "/computes/server-sync.js",
     "type": "server",
     "options": {
-        "REQUESTS_COUNT": 3
+        "REQUESTS_COUNT": 5,
+        "REQUEST_TIMEOUT": 10000
     }
 }, {
     "id": 7,
@@ -60,6 +61,7 @@
     "type": "server",
     "options": {
         "REQUESTS_COUNT": 3,
-        "WORKERS_COUNT": 4
+        "WORKERS_COUNT": 4,
+        "REQUEST_TIMEOUT": 10000
     }
 }]

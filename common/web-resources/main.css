@@ -160,8 +160,11 @@ button:hover {
     height: 16px;
     float: left;
 }
-.requests-entry-line-times-t.-fill {
+.requests-entry-line-times-t.-success {
     background-color: #fff;
+}
+.requests-entry-line-times-t.-failure {
+    background-color: #cd5c5c;
 }
 .requests-entry-line-times-t > span {
     position: absolute;
@@ -170,6 +173,9 @@ button:hover {
     font-size: 12px;
     line-height: 1em;
     font-family: monospace;
+}
+.requests-entry-line-times-t.-failure > span {
+    color: #cd5c5c;
 }
 .cpus {
     font-family: monospace;
