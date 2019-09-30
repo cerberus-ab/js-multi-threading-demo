@@ -13,8 +13,11 @@ function requestCompute(url, data, options) {
                 return res.json();
             })
             .then(resolve)
+            .catch(_ => reject(new Error('error')));
 
         // timeout
-        setTimeout(() => reject(new Error('timeout')), options.REQUEST_TIMEOUT);
+        if (options.REQUEST_TIMEOUT) {
+            setTimeout(() => reject(new Error('timeout')), options.REQUEST_TIMEOUT);
+        }
     });
 }

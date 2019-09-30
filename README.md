@@ -49,12 +49,18 @@ The [settings.json](/app/settings.json) file contains a list of default options 
 
 - `{number}` **DATA_SEED**: 500 - Determines the size of the computed CPU-intensive task.
 - `{number}` **DATA_BATCH_SIZE**: 100 - The part of the computed task on batching.
-- `{number}` **WAIT_BEFORE_COMPUTE**: 3000 (ms) - Wait before the computing after start demo (client-side demo).
-- `{number}` **TIMER_TICK**: 200 (ms) - The time before the next timer's tick (client-side demo).
 - `{number}` **WORKERS_COUNT**: 4 - The number of workers used. If there's a master-worker involved the actual number will be more by one.
-- `{number}` **REQUESTS_COUNT**: 3 - The number of requests sent for computing (server-side demo).
-- `{number}` **REQUESTS_DELAY**: 1000 (ms) - Wait before the next request (server-side demo).
-- `{number}` **REQUEST_TIMEOUT**: 120000 (ms) - The time before reject a request by client (server-side demo).
+
+Client-side demo only:
+
+- `{number}` **WAIT_BEFORE_COMPUTE**: 3000 (ms) - Wait before the computing after demo start.
+- `{number}` **TIMER_TICK**: 200 (ms) - Wait before the next timer's tick.
+
+Server-side demo only:
+
+- `{number}` **REQUESTS_COUNT**: 3 - The number of requests sent for computing.
+- `{number}` **REQUESTS_DELAY**: 1000 (ms) - Wait before the next request.
+- `{number}` **REQUEST_TIMEOUT**: 0 (ms) - The time before reject a request by client. By default: 0 means no timeout.
 
 Any changes need the app's restart.
 

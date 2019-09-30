@@ -7,7 +7,7 @@
         "WORKERS_COUNT": 4,
         "REQUESTS_COUNT": 3,
         "REQUESTS_DELAY": 1000,
-        "REQUEST_TIMEOUT": 120000
+        "REQUEST_TIMEOUT": 0
     },
     "LOGS_CHANNEL_URL": "ws://localhost:3001"
 }
