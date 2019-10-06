@@ -64,4 +64,31 @@
         "WORKERS_COUNT": 4,
         "REQUEST_TIMEOUT": 10000
     }
+}, {
+    "id": 8,
+    "title": "Server Worker [q6 x w1]",
+    "description": "Sends 6 requests to server for computing by using worker thread for each request.",
+    "path": "/demo/server-worker",
+    "api": "/api/compute/server-worker",
+    "compute": "/computes/server-worker.js",
+    "type": "server",
+    "options": {
+        "DATA_SEED": 350,
+        "REQUESTS_COUNT": 6,
+        "REQUEST_TIMEOUT": 10000
+    }
+}, {
+    "id": 9,
+    "title": "Server Workers Pool [q6 x w1/4]",
+    "description": "Sends 6 requests to server for computing by using the allocated pool of 4 (cores) worker threads.",
+    "path": "/demo/server-workers-pool",
+    "api": "/api/compute/workers-pool",
+    "compute": "/computes/server-workers-pool.js",
+    "type": "server",
+    "options": {
+        "DATA_SEED": 350,
+        "REQUESTS_COUNT": 6,
+        "WORKERS_COUNT": 4,
+        "REQUEST_TIMEOUT": 10000
+    }
 }]

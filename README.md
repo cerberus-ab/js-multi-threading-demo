@@ -58,7 +58,7 @@ Client-side demo only:
 
 Server-side demo only:
 
-- `{number}` **REQUESTS_COUNT**: 3 - The number of requests sent for computing.
+- `{number}` **REQUESTS_COUNT**: 3 - The number of requests sent for computing. Remember about the max parallel connections per host which might vary across browsers.
 - `{number}` **REQUESTS_DELAY**: 1000 (ms) - Wait before the next request.
 - `{number}` **REQUEST_TIMEOUT**: 0 (ms) - The time before reject a request by client. By default: 0 means no timeout.
 

@@ -3,7 +3,7 @@ const utils = require('../../common/utils.js');
 const task = require('../../common/task.js');
 
 let requestIndex = workerData.index;
-parentPort.postMessage({ type: 'log', text: `Started master ${requestIndex} with ${workerData.workersCount} slaves` });
+parentPort.postMessage({ type: 'log', text: `Started master #${requestIndex} with ${workerData.workersCount} slaves` });
 let batches = utils.batch(workerData.list, Math.floor(workerData.list.length / workerData.workersCount));
 let accum = [];
 let responsed = 0;
@@ -22,7 +22,7 @@ batches.forEach((batch, i) => {
                 responsed += 1;
                 if (responsed === batches.length) {
                     let result = task.collect(accum);
-                    parentPort.postMessage({ type: 'log', text: `Finished master ${requestIndex}` });
+                    parentPort.postMessage({ type: 'log', text: `Finished master #${requestIndex}` });
                     parentPort.postMessage({ type: 'done', result });
                 }
                 break;
