@@ -1,7 +1,7 @@
 const express = require('express');
 const ejs = require('ejs');
 const settings = require('./settings.json');
-const solutions = require('./solutions.json');
+const solutions = require('./solutions.json').filter(s => !s.hidden);
 const log = require('./common/log.js')(settings.LOGS_CHANNEL_URL, 'server');
 const utils = require('./common/utils.js');
 

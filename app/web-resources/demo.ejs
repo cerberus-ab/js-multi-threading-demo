@@ -71,6 +71,7 @@
                     if (timerDescriptor) {
                         clearInterval(timerDescriptor);
                     }
+                    log.send('Started timer');
                     timerDescriptor = setInterval(clockWidget.inc, options.TIMER_TICK);
                     // waiting before computing
                     setTimeout(() => {
