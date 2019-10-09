@@ -3,7 +3,7 @@ self.importScripts('/common/task.js');
 
 onmessage = e => {
     postMessage({ type: 'log', text: `Started master with ${e.data.workersCount} slaves` });
-    let batches = utils.batch(e.data.list, Math.floor(e.data.list.length / e.data.workersCount));
+    let batches = utils.batchByCount(e.data.list, e.data.workersCount);
     let accum = [];
     let responsed = 0;
     

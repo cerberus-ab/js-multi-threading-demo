@@ -4,7 +4,7 @@ const task = require('../../common/task.js');
 
 let requestIndex = workerData.index;
 parentPort.postMessage({ type: 'log', text: `Started master #${requestIndex} with ${workerData.workersCount} slaves` });
-let batches = utils.batch(workerData.list, Math.floor(workerData.list.length / workerData.workersCount));
+let batches = utils.batchByCount(workerData.list, workerData.workersCount);
 let accum = [];
 let responsed = 0;
 

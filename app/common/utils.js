@@ -1,12 +1,16 @@
 let utils = {
 
-    batch: (arr, size) => {
+    batchBySize: (arr, size) => {
         let batches = [];
         let copy = arr.slice(0);
         while (copy.length) {
             batches.push(copy.splice(0, size));
         }
         return batches;
+    },
+
+    batchByCount: (arr, count) => {
+        return utils.batchBySize(arr, Math.ceil(arr.length / count));
     },
     
     range: max => {
