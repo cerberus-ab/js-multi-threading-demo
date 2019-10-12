@@ -16,9 +16,9 @@
             </div>
             <div class="content">
                 <ul class="list" style="max-width: 600px;">
-                    <% solutions.forEach(function(solution) { %>
+                    <% solutions.forEach(function(solution, i) { %>
                     <li class="list__el" data-href="<%= solution.path %>">
-                        <p>#<%= solution.id %>&nbsp;&nbsp;<%= solution.title %></p>
+                        <p>#<%= i + 1 %>&nbsp;&nbsp;<%= solution.title %></p>
                         <p class="-hint"><%= solution.description %></p>
                     </li>
                     <% }); %>
