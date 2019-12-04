@@ -55,3 +55,26 @@ solutions.filter(s => s.type === 'server').forEach(solution => {
 app.listen(port, () => {
     console.log('Server on ' + port);
 });
+
+/**
+ * Starts the server in cluster mode (for testing now)
+ *
+ * It spawns child processes for core-clustering of the service;
+ * makes sense for single-threaded & server-side solutions based demos.
+ *
+ * TODO: prepare the cluster mode as a regular solution
+ *
+const cluster = require('cluster');
+
+if (cluster.isMaster) {
+    console.log(`Master ${process.pid} started on ${port}`);
+    const cpus = require('os').cpus().length;
+    for (let i = 0; i != cpus; i += 1) {
+        cluster.fork();
+    }
+} else {
+    app.listen(port, () => {
+        console.log(`Fork ${process.pid} started`);
+    });
+}
+ */

@@ -6,4 +6,4 @@ module.exports = function compute(data, options, log) {
         pool = createPool(__dirname + '/../worker-threads/pool-thread.js', options.WORKERS_COUNT, log);
     }
     return pool.compute(data);
-}
+};
